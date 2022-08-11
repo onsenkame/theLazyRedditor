@@ -14,6 +14,7 @@ to interpret your actions and allow you to intuitively browse reddit!
 ## Actions from Tensorflow
 
 1. Install and import necessary dependencies
+Create React App
 Tensorflow.js (@tensorflow/tfjs)
 Handpose Models (@tensorflow-models/handpose)
 React Webcam (https://www.npmjs.com/package/react-webcam, react-webcam)
