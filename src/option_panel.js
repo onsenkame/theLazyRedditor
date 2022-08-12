@@ -1,7 +1,7 @@
 import * as handdetection from '@tensorflow-models/hand-pose-detection';
 import * as tf from '@tensorflow/tfjs-core';
 
-import * as params from './shared/params';
+import * as params from './params';
 
 /**
  * Records each flag's default value under the runtime environment and is a

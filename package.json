@@ -1,7 +1,11 @@
 {
   "name": "source",
   "version": "0.1.0",
+  "main": "index.js",
   "private": true,
+  "engines": {
+    "node": ">=8.9.0"
+  },
   "dependencies": {
     "@mediapipe/hands": "^0.4.1646424915",
     "@tensorflow-models/hand-pose-detection": "^2.0.0",
@@ -23,9 +27,17 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "watch": "cross-env NODE_ENV=development parcel index.html --no-hmr --open",
+    "build": "cross-env NODE_ENV=production parcel build index.html --public-url ./",
+    "lint": "eslint .",
+    "build-dep": "cd ../../ && yarn && yarn build",
+    "link-core": "yalc link @tensorflow/tfjs-core",
+    "link-webgl": "yalc link @tensorflow/tfjs-backend-webgl"
+  },
+  "resolutions": {
+    "is-svg": "4.3.1"
   },
   "eslintConfig": {
     "extends": [

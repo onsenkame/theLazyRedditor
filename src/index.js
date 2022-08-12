@@ -5,9 +5,6 @@ import * as mpHands from '@mediapipe/hands';
 //WebAssembly backend to TensorFlow.js with support for HandPose
 //https://webassembly.org/ docs
 import * as tfjsWasm from '@tensorflow/tfjs-backend-wasm';
-tfjsWasm.setWasmPaths(
-  `https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-wasm@${
-    tfjsWasm.version_wasm}/dist/`);
 //allows for multiple hands (2) to be detected
 //https://blog.tensorflow.org/2021/11/3D-handpose.html docs
 import * as handdetection from '@tensorflow-models/hand-pose-detection';
@@ -15,9 +12,12 @@ import * as handdetection from '@tensorflow-models/hand-pose-detection';
 import {Camera} from './camera';
 import {setupDatGui} from './option_panel';
 import {STATE} from './params';
-import {setupStats} from './shared/stats_panel';
-import {setBackendAndEnvFlags} from './shared/util';
+import {setupStats} from './statsView';
+import {setBackendAndEnvFlags} from './utils';
 
+tfjsWasm.setWasmPaths(
+  `https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-wasm@${
+    tfjsWasm.version_wasm}/dist/`);
 
 let detector, camera, stats;
 let startInferenceTime, numInferences = 0;
