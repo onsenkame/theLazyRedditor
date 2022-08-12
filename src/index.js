@@ -1,12 +1,12 @@
 import '@tensorflow/tfjs-backend-webgl';
-//mediapipe hands ML pipeline (Palm Detection Model + Hand Landmark Model)
-//https://google.github.io/mediapipe/solutions/hands.html docs
+// mediapipe hands ML pipeline (Palm Detection Model + Hand Landmark Model)
+// https://google.github.io/mediapipe/solutions/hands.html docs
 import * as mpHands from '@mediapipe/hands';
-//WebAssembly backend to TensorFlow.js with support for HandPose
-//https://webassembly.org/ docs
+// WebAssembly backend to TensorFlow.js with support for HandPose
+// https://webassembly.org/ docs
 import * as tfjsWasm from '@tensorflow/tfjs-backend-wasm';
-//allows for multiple hands (2) to be detected
-//https://blog.tensorflow.org/2021/11/3D-handpose.html docs
+// allows for multiple hands (2) to be detected
+// https://blog.tensorflow.org/2021/11/3D-handpose.html docs
 import * as handdetection from '@tensorflow-models/hand-pose-detection';
 
 import {Camera} from './camera';
@@ -16,8 +16,8 @@ import {setupStats} from './statsView';
 import {setBackendAndEnvFlags} from './utils';
 
 tfjsWasm.setWasmPaths(
-  `https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-wasm@${
-    tfjsWasm.version_wasm}/dist/`);
+  `https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-wasm@3.19.0/dist/`
+);
 
 let detector, camera, stats;
 let startInferenceTime, numInferences = 0;
@@ -33,7 +33,7 @@ async function createDetector() {
           runtime,
           modelType: STATE.modelConfig.type,
           maxHands: STATE.modelConfig.maxNumHands,
-          solutionPath: `https://cdn.jsdelivr.net/npm/@mediapipe/hands@${mpHands.VERSION}`
+          solutionPath: `https://cdn.jsdelivr.net/npm/@mediapipe/hands@0.4.1646424915`
         });
       } else if (runtime === 'tfjs') {
         return handdetection.createDetector(STATE.model, {
@@ -43,7 +43,6 @@ async function createDetector() {
         });
       }
   }
-    
 }
 
 async function checkGuiUpdate() {
