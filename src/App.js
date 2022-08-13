@@ -4,6 +4,7 @@ import * as handpose from "@tensorflow-models/handpose";
 import Webcam from "react-webcam";
 import "./App.css";
 import { type } from "@testing-library/user-event/dist/type";
+import { handVis } from "./debugUtils";
 
 function App() {
   const webcamRef = useRef(null);
@@ -39,11 +40,10 @@ function App() {
     //detect hands
     const hand = await model.estimateHands(video);
     console.log(hand);
+    //draw hand
+    const canvasView = canvasRef.current.getContext("2d");
+    handVis(hand, canvasView);
     }
-
-
-
-    //***draw mesh
   };
 
   runHandpose();
