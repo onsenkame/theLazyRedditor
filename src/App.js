@@ -20,7 +20,6 @@ function App() {
   };
 
   const detect = async (model) => {
-    console.log("this is hand model and props", model)
     //get data from webcam
     if (
       typeof webcamRef.current !== "undefined" &&
