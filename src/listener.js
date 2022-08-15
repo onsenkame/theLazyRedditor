@@ -18,8 +18,9 @@ export const listenChecker = (predictions) => {
       const landmarks = prediction.landmarks;
       //loop through fingers
       for (let finger in fingerLandmarks) {
-        const slopeAB = (landmarks[fingerLandmarks[finger][3]][1] - landmarks[fingerLandmarks[finger][2]][1]) / (landmarks[fingerLandmarks[finger][3]][0] - landmarks[fingerLandmarks[finger][2]][0]);
-        const slopeAC = (landmarks[fingerLandmarks[finger][3]][1] - landmarks[fingerLandmarks[finger][1]][1]) / (landmarks[fingerLandmarks[finger][3]][0] - landmarks[fingerLandmarks[finger][1]][0]);
+        const slopeAB = Math.abs((landmarks[fingerLandmarks[finger][3]][1] - landmarks[fingerLandmarks[finger][2]][1]) / (landmarks[fingerLandmarks[finger][3]][0] - landmarks[fingerLandmarks[finger][2]][0]));
+        const slopeAC = Math.abs((landmarks[fingerLandmarks[finger][3]][1] - landmarks[fingerLandmarks[finger][1]][1]) / (landmarks[fingerLandmarks[finger][3]][0] - landmarks[fingerLandmarks[finger][1]][0]));
+        // console.log('slopeAB:', slopeAB, 'slopeAC:', slopeAC);
         const over = (slopeAC * (1+deviation));
         const under = (slopeAC * (1-deviation));
         if (slopeAB < over && slopeAB > under) {

@@ -49,25 +49,26 @@ function App() {
       const canvasView = canvasRef.current.getContext("2d");
       handVis(hand, canvasView);
       //returns 1-4 based on number straight fingers
-      let listening = listenChecker(hand);
-      straightCounter += listening;
+      let numStraight = listenChecker(hand);
+      straightCounter += numStraight;
       //waits for straightCounter to reach 100, then begins action calculation
-      startListening(listening, hand);
+      startListening(numStraight, hand);
       //send info to sendActions
       if (recordingInput) {
         sendActions(hand, handSnapShot);
+        straightCounter = 0;
       }
     }
   };
 
-  const startListening = (listening, hand) => {
-    if (straightCounter > 0 && listening === 0) {
+  const startListening = (numStraight, hand) => {
+    if (straightCounter > 0 && numStraight === 0) {
       straightCounter -= 5;
     }
     if (straightCounter > 0) {
       straightCounter -= 1;
     }
-    if (straightCounter >= 40) {
+    if (straightCounter >= 60) {
       setTimeout(stopListening, 3000);
       // [palm x, palm y, palm to tip of middle finger distance]
       handSnapShot = snapShot(hand);

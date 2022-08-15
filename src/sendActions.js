@@ -13,7 +13,7 @@ export const sendActions = (predictions, initialPositions) => {
       const handSize = initialPositions[2];
       //calculate distance from initial position
       const distance = Math.sqrt(Math.pow(currentPalmX - initialPositions[0], 2) + Math.pow(currentPalmY - initialPositions[1], 2));
-      const distanceToTrigger = handSize / 2; 
+      const distanceToTrigger = handSize; 
       //if palm moved more than hand length from initial position
       //movements are in relation to in real life movement
       if (Math.abs(currentPalmY - initialPositions[1]) > Math.abs(currentPalmX - initialPositions[0])) {
