@@ -1,4 +1,4 @@
-export const sendActions = (predictions, intialPositions) => {
+export const sendActions = (predictions, initialPositions) => {
   console.log('waiting for action')
   //check for predictions
   if (predictions.length > 0) {
@@ -10,23 +10,26 @@ export const sendActions = (predictions, intialPositions) => {
       const currentPalmY = palmMark[1];
       const currentPalmX = palmMark[0];
       //handSize
-      const handSize = intialPositions[2];
+      const handSize = initialPositions[2];
       //calculate distance from initial position
-      const distance = Math.sqrt(Math.pow(currentPalmX - intialPositions[0], 2) + Math.pow(currentPalmY - intialPositions[1], 2));
+      const distance = Math.sqrt(Math.pow(currentPalmX - initialPositions[0], 2) + Math.pow(currentPalmY - initialPositions[1], 2));
       const distanceToTrigger = handSize / 2; 
       //if palm moved more than hand length from initial position
       //movements are in relation to in real life movement
-      if (currentPalmY > intialPositions[1] + distanceToTrigger) {
-        alert('Action: down ------ Scrolling to next Post!');
-      }
-      if (currentPalmY < intialPositions[1] - distanceToTrigger) {
-        alert('Action: up ------ Scrolling up to previous Post');
-      }
-      if (currentPalmX > intialPositions[0] + distanceToTrigger) {
-        alert('Action: left ------ (if inside post: go back))');
-      }
-      if (currentPalmX < intialPositions[0] - distanceToTrigger) {
-        alert('Action: right ------ Play / Pause / Click on Post');
+      if (Math.abs(currentPalmY - initialPositions[1]) > Math.abs(currentPalmX - initialPositions[0])) {
+        if (currentPalmY > initialPositions[1] + distanceToTrigger) {
+          alert('Action: down ------ Scrolling to next Post!');
+        }
+        if (currentPalmY < initialPositions[1] - distanceToTrigger) {
+          alert('Action: up ------ Scrolling up to previous Post');
+        }
+      } else {
+        if (currentPalmX < initialPositions[0] - distanceToTrigger) {
+          alert('Action: right ------ Play / Pause / Click on Post');
+        }
+        if (currentPalmX > initialPositions[0] + distanceToTrigger) {
+          alert('Action: left ------ (if inside post: go back))');
+        }
       }
     });
   }
